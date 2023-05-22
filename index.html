@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<meta name="description" content="Calculadora IVA CR"/>
+			<meta name="Abstract" content="Calculadora IVA CR"/>
+			<meta name="robots" content="index, follow"/>
+			<meta name="googlebot" content="index, follow"/>
+			<meta name="Language" content="Español"/>
+			<meta name="Distribution" content="Global"/>
+			<meta name="owner" content="Calculadora IVA CR"/>
+			<meta name="keywords" content="impuesto del valor agregado,iva,iva cr,calculadora,costa rica"/>
+			<title>Calculadora IVA CR</title>
+			<meta name="description" content="Este sitio pretende ayudar a verificar el cálculo 
+						de los Impuestos del Valor Agregado (IVA) de las facturas electrónicas,
+						para presentar la declaración del IVA ante el Ministerio de Hacienda de Costa Rica.">
+
+			<!-- CSS  -->
+			<link href="./resources/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+			<link href="./resources/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+			<!--Import Google Icon Font-->
+			<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+		</head>
+		<body id="body">
+			<main>
+			<h1 class="header teal-text text-darken-1 center">Calculadora IVA CR</h1>
+			
+			<div class="container" id="facturacion">
+				<div class="section">	
+					
+					 <div class="row">
+						<div class="col s12">
+						  <div class="card">
+							<div class="card-content center">
+							  <span class="card-title">Seleccione los archivos .xml de las facturas electrónicas</span>
+							  <p >
+							  Recuerde que puede tener dos archivos xml: uno de la factura y 
+								otra de la confirmación de aceptación. Para este cálculo solo requiere el xml de la factura.
+							  </p>
+							  <br />
+							  
+							  <input type="file" id="fileUpload" multiple="true" />
+								<br />
+								<br />
+								<input type="button" id="upload" value="Calcular IVA" class="waves-effect waves-light btn-large"/>
+							</div>
+							
+						  </div>
+						</div>
+					  </div>
+					  <br />
+					  
+					 
+					<div id="calculado" >
+						<div class="card">
+							<div class="card-content">
+								<span class="card-title">Totales</span>
+							  
+								<div >
+									<div id="suma_subtotal">
+										<h3>Suma de subtotal sin IVA</h3>
+										<table id="tabla_suma_subtotal" class="responsive-table">
+											<thead>
+												<tr>
+													<th class="number_column">0%</th>
+													<th class="number_column">1%</th>
+													<th class="number_column">2%</th>
+													<th class="number_column">4%</th>
+													<th class="number_column">8%</th>
+													<th class="number_column">13%</th>
+													<th class="number_column">Total</th>
+												</tr>
+											</thead>
+											<tbody id="tabla_suma_subtotal_contenido">
+											</tbody>
+										</table>
+									</div>
+									
+									<br />
+									<br />
+									
+									<div id="suma_impuestos">
+										<h3>Suma de IVA</h3>
+										<table id="tabla_suma_impuestos" class="responsive-table">
+											<thead>
+												<tr>
+													<th class="number_column">0%</th>
+													<th class="number_column">1%</th>
+													<th class="number_column">2%</th>
+													<th class="number_column">4%</th>
+													<th class="number_column">8%</th>
+													<th class="number_column">13%</th>
+													<th class="number_column">Total</th>
+												</tr>
+											</thead>
+											<tbody id="tabla_suma_impuestos_contenido">
+											</tbody>
+										</table>
+									</div>
+									
+									<br />
+									<br />
+									
+									<div id="suma_total">
+										<h3>Suma total con IVA</h3>
+										<table id="tabla_suma_total" class="responsive-table">
+											<thead>
+												<tr>
+													<th class="number_column">0%</th>
+													<th class="number_column">1%</th>
+													<th class="number_column">2%</th>
+													<th class="number_column">4%</th>
+													<th class="number_column">8%</th>
+													<th class="number_column">13%</th>
+													<th class="number_column">Total</th>
+												</tr>
+											</thead>
+											<tbody id="tabla_suma_total_contenido">
+											</tbody>
+										</table>
+									</div>
+									
+									<br />
+									<br />
+									
+								</div>							
+						  </div>
+						</div>
+						
+						<ul class="collapsible">
+							<li>
+							  <div class="collapsible-header"><i class="material-icons">list</i>Consultar detalle de facturas</div>
+							  <div class="collapsible-body">
+								  <div id="detalle_facturas">
+										<table id="tabla_detalles" class="responsive-table">
+											<thead>
+												<tr>
+													<th width="10%">Emisor</th>
+													<th>Consecutivo</th>
+													<th>Detalle</th>
+													<th class="number_column">Subtotal</th>
+													<th class="number_column">% IVA</th>
+													<th class="number_column">IVA neto</th>
+													<th class="number_column">Monto total</th>
+												</tr>
+											</thead>
+											<tbody id="tabla_detalles_contenido">
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</li>
+						</ul>
+          
+					</div>
+				</div>
+			</div>
+			</main>
+			<footer class="page-footer rbc-primary">
+				<div class="container">
+					<div class="row">
+						<div class="col l8 s12" id="quienessomos">
+						<h3>Términos y condiciones de uso</h4>
+						<blockquote>
+						  <p>				  
+							Esta herramienta pretende ayudar a verificar el cálculo 
+							de los Impuestos del Valor Agregado (IVA) a partir de las facturas electrónicas,
+							para presentar la declaración del IVA ante el Ministerio de Hacienda de Costa Rica.
+							Sin embargo, no sustituye la responsabilidad de la persona usuaria de validar que los montos sean correctos,
+							por lo que este sitio no se hace responsable por errores que puedan generarse por su uso.
+						  </p>
+						  
+						  <p >
+							Es una herramienta gratuita de software libre que no guarda ni transfiere información de las facturas, 
+							ya que todos los cálculos los realiza del lado del cliente para garantizar mantener la privacidad 
+							de los datos contenidos en los archivos.
+							Para verificarlo puede <a href='https://github.com/miideacr/calculadora-iva'>consultar el repositorio de código</a>.
+						  </p>
+						  
+						  <p>
+							Fue desarrollada para uso personal pero la hemos decidido compartir,
+							sin embargo no nos hacemos responsables de dar mantenimiento permanente ni
+							solucionar los problemas que pueda presentar la página,
+							y tampoco nos hacemos responsables de atender las consultas de los usuarios.
+						  </p>
+						  
+						  <p>
+							Por favor no confíe completamente en este cálculo ya que depende de la estructura 
+							que utilice la plataforma del Ministerio de Hacienda al momento del desarrollo.						
+							Le recordamos que esta herramienta no pretende sustituir la suma o revisión de los montos, 
+							simplemente es una herramienta de apoyo para verificar los cálculos.
+						  </p>
+						  
+						  </blockquote>							  
+						</div>	
+						
+						<div class="col l4 s12 center" id="contacto">
+						
+													
+						
+						</div>
+					</div>
+				</div>
+				<div class="footer-copyright">
+					<div class="container">
+						<a href="http://miideacr.com">miideacr.com</a>
+					</div>
+				</div>
+			</footer>
+			<!-- Modal Structure -->
+			  <div id="modal1" class="modal">
+				<div class="modal-content center">
+				  <h4>Términos y condiciones de uso</h4>
+				  <p>				  
+					Este sitio pretende ayudar a verificar el cálculo 
+					de los Impuestos del Valor Agregado (IVA) de las facturas electrónicas,
+					para presentar la declaración del IVA ante el Ministerio de Hacienda de Costa Rica.
+					Sin embargo, no sustituye la responsabilidad de la persona usuaria de validar que los montos sean correctos,
+					por lo que este sitio no se hace responsable por errores que puedan generarse por su uso.
+				  </p>
+				  
+				  <p >
+					Esta herramienta gratuita de software libre que no guarda ni transfiere información de las facturas, 
+					ya que todos los cálculos los realiza del lado del cliente para garantizar mantener la privacidad 
+					de los datos contenidos en los archivos.
+					Para verificarlo puede <a href='https://github.com/miideacr/calculadora-iva'>consultar el repositorio de código</a>.
+				  </p>
+				  
+				  <p>
+					Esta es una herramienta desarrollada para uso personal pero que hemos decidido compartir,
+					sin embargo no nos hacemos responsables de dar mantenimiento permanente ni
+					solucionar los problemas que pueda presentar la página,
+					y tampoco nos hacemos responsables de atender las consultas de los usuarios.
+				  </p>
+				  
+				  <p>
+					Por favor no confíe completamente en este cálculo ya que depende de la estructura 
+					que utilice la plataforma del Ministerio de Hacienda al momento del desarrollo.						
+					Le recordamos que esta herramienta no pretende sustituir la suma o revisión de los montos, 
+					simplemente es una herramienta de apoyo para verificar los cálculos.
+				  </p>
+				  
+					<div class="center">
+					<a href="#!" class="modal-close waves-effect btn-large">Aceptar</a>
+					</div>
+				  
+				  
+				</div>
+				
+			  </div>
+			<!--  Scripts-->
+			<script src="./resources/js/jquery-3.7.min.js"></script>
+			<!--https://materializeweb.com/getting-started.html-->
+			<script src="./resources/js/materialize.min.js"></script>
+			<script src="./resources/js/calculadora_iva.js"></script>
+		</body>
+	</html>
